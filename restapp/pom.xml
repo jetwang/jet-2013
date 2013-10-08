@@ -28,7 +28,7 @@
 
         <dependency>
             <groupId>com.wind</groupId>
-            <artifactId>core-test</artifactId>
+            <artifactId>test-util</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>

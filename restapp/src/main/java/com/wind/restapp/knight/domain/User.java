@@ -1,8 +1,7 @@
 package com.wind.restapp.knight.domain;
 
-import jetwang.framework.db.Entity;
 
-public class User extends Entity {
+public class User{
     private String id;
     private String email;
     private String password;

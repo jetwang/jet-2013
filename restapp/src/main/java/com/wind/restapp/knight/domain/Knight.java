@@ -1,8 +1,8 @@
 package com.wind.restapp.knight.domain;
 
-import jetwang.framework.util.Constants;
+
 import com.wind.restapp.knight.form.KnightStatus;
-import jetwang.framework.db.Entity;
+import com.wind.restapp.util.Constants;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -11,7 +11,7 @@ import java.text.MessageFormat;
 @javax.persistence.Entity
 @Table(name = "knight", uniqueConstraints = {@UniqueConstraint(columnNames = {"knight_id", "KNIGHT_NUMBER"})})
 @XmlRootElement(name = "knight", namespace = Constants.NS + "/knight")
-public class Knight extends Entity {
+public class Knight{
     @Column(name = "knight_id")
     private String knightId;
     @Column(length = 20, name = "name")

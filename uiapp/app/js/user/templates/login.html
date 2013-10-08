@@ -1,0 +1,28 @@
+<div>
+    <form role="form" name="loginForm" ng-submit="login()">
+        <div class="form-group" ng-class="{'has-error': loginForm.email.$dirty&&loginForm.email.$invalid}">
+            <label class="control-label" for="email">Email address <span ng-show="loginForm.email.$error.maxlength">
+          shouldn't exceed 20. </span>
+        <span ng-show="loginForm.email.$error.existing">should be an existing email.</span></label>
+
+
+            <input  type="email" size="40" name="email" ng-model="email" ng-required="true" ng-maxlength="20"
+                   class="form-control col-lg-4"
+                   id="email" placeholder="Enter email">
+
+        </div>
+        <div class="form-group"  ng-class="{'has-error': loginForm.password.$dirty&&loginForm.password.$invalid}">
+            <label class="control-label" for="password">Password</label>
+            <input type="password" name="password" size="40" ng-model="password" ng-required="true" class="form-control"
+                   id="password"
+                   placeholder="Password">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            &nbsp;
+            <button type="reset" class="btn">Cancel</button>
+        </div>
+
+    </form>
+</div>

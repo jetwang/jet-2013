@@ -2,11 +2,11 @@ package com.wind.restapp.knight.restws;
 
 import com.sun.jersey.api.NotFoundException;
 import com.sun.jersey.api.ParamException;
-import jetwang.framework.util.Constants;
-import com.wind.restapp.knight.domain.Knight;
 import com.wind.restapp.knight.dao.KnightDao;
+import com.wind.restapp.knight.domain.Knight;
 import com.wind.restapp.knight.form.KnightForm;
 import com.wind.restapp.knight.manager.KnightManager;
+import com.wind.restapp.util.Constants;
 import jetwang.framework.ServiceException;
 import jetwang.framework.db.Page;
 import jetwang.framework.util.StringUtils;
@@ -62,7 +62,7 @@ public class KnightRestService {
         if (!StringUtils.equals(knight.getKnightId(), knightForm.getKnightId())) {
             throw new ParamException.FormParamException(new ServiceException("knight id unmatched"), "knightId", "");
         }
-        URI getKnightUri = uriInfo.getBaseUriBuilder().path("com/wind/restapp/knight").path("get").path(String.valueOf(knight.getNumber())).build();
+        URI getKnightUri = uriInfo.getBaseUriBuilder().path("knight").path("get").path(String.valueOf(knight.getNumber())).build();
         return Response.ok(getKnightUri).build();
     }
 
@@ -70,8 +70,8 @@ public class KnightRestService {
     @Path("/update")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML + Constants.CHARSET})
     public Response updateKnight(KnightForm knightForm) {
-        Knight knight = knightDao.saveFromForm(knightForm);
-        URI getKnightUri = uriInfo.getBaseUriBuilder().path("com/wind/restapp/knight").path("get").path(String.valueOf(knight.getNumber())).build();
+        Knight knight = knightDao.updateOrSaveFromForm(knightForm);
+        URI getKnightUri = uriInfo.getBaseUriBuilder().path("knight").path("get").path(String.valueOf(knight.getNumber())).build();
         return Response.created(getKnightUri).build();
     }
 }
