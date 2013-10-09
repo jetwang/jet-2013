@@ -1,31 +1,39 @@
-package com.wind.restapp.user.restws;
+package com.wind.restapp.user.resource;
 
 import com.sun.jersey.api.NotFoundException;
+import com.sun.jersey.api.ParamException;
+import com.wind.restapp.user.form.LoginForm;
+import com.wind.restapp.user.manager.NotNeedToLogin;
 import com.wind.restapp.user.manager.SessionContext;
 import com.wind.restapp.util.Constants;
+import jetwang.framework.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("user")
 @Service
-public class UserRestService {
+@NotNeedToLogin
+public class UserResource {
     @Autowired
     private SessionContext sessionContext;
 
-    @GET
-    @Path("/login/{email}/{password}")
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML + Constants.CHARSET})
-    public String login(@PathParam("email") String email, @PathParam("password") String password) {
+    @POST
+    @Path("/login")
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML + Constants.CHARSET})
+    public Response login(LoginForm loginForm) {
+        String email = loginForm.getEmail();
+        if (!StringUtils.hasText(loginForm.getPassword())) {
+            throw new ParamException.FormParamException(new ServiceException("password is empty"), "password", "");
+
+        }
         if (StringUtils.hasText(email) && email.startsWith("jetwang")) {
             sessionContext.setCurrentEmail(email);
-            return email;
+            return Response.ok(email).build();
         } else {
             throw new NotFoundException();
         }

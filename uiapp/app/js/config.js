@@ -1,7 +1,7 @@
-define({
+requirejs.config({
     paths: {
         angular: '../../libs/angular/angular',
-        constants: 'common/constants',
+        globalParams: './common/globalParams',
         angularRoute: '../../libs/angular-route/angular-route',
         angularBootstrap: '../../libs/angular-bootstrap/ui-bootstrap',
         angularMocks: '../../libs/angular-mocks/angular-mocks',

@@ -1,16 +1,20 @@
 (function (root) {
-    require(["./config"], function (config) {
-        requirejs.config(config);
+    require(["./config"], function () {
         require([
             "angularRoute",
             "angularBootstrap",
             "./common/route",
             "angular",
-            "./user/user_controllers"], function (angularRoute, angularBootstrap, app,angular) {
-            var $html = angular.element(document.getElementsByTagName('body')[0]);
+            "globalParams",
+            "text!./common/template/default_layout.html",
+            "./user/service/currentUserService",
+            "./user/userControllers"], function (angularRoute, angularBootstrap, app, angular, globalParams, layoutHTML) {
+            var $container = angular.element(document.getElementById('ui-app-container'));
             angular.element().ready(function () {
-                $html.addClass('ng-app');
-                angular.bootstrap($html, ["uiapp"]);
+                $container.html(layoutHTML);
+                globalParams.apiHost=$container.attr("api-host");
+                $container.addClass('ng-app');
+                angular.bootstrap($container, ["uiapp"]);
             });
         });
     });

@@ -1,4 +1,4 @@
-package com.wind.restapp.knight.restws;
+package com.wind.restapp.knight.resource;
 
 import com.sun.jersey.api.NotFoundException;
 import com.sun.jersey.api.ParamException;
@@ -23,7 +23,7 @@ import java.util.List;
 
 @Path("knight")
 @Service
-public class KnightRestService {
+public class KnightResource {
     @Autowired
     private KnightDao knightDao;
     @Autowired

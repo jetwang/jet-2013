@@ -48,10 +48,16 @@
 
     <bean id="dataAccess" class="jetwang.framework.db.DataAccess"/>
 
+    <aop:config>
+        <aop:aspect id="authAspect" ref="authenticationChecker">
+            <aop:around method="check" pointcut="@annotation(org.springframework.stereotype.Service)
+"/>
+        </aop:aspect>
+    </aop:config>
+
     <context:component-scan base-package="com.wind.restapp.*.manager.**"/>
     <context:component-scan base-package="com.wind.restapp.*.dao.**"/>
 
-    <context:component-scan base-package="com.wind.restapp.*.restws.**"/>
-    <context:component-scan base-package="com.wind.restapp.*.filter.**"/>
+    <context:component-scan base-package="com.wind.restapp.*.resource.**"/>
 </beans>
 

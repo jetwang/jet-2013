@@ -1,4 +1,4 @@
-package com.wind.restapp.knight.restws;
+package com.wind.restapp.knight.resource;
 
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.GenericType;
@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-public class KnightRestServiceTest extends RestTest {
+public class KnightResourceTest extends RestTest {
     @Test
     public void testFindKnight() throws Exception {
         testUpdateKnight();
