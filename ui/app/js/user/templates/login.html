@@ -1,0 +1,29 @@
+
+<div>
+    <form action="login" method="post" target="hiddenContainer">
+        <input type="hidden" name="from" value="${RequestParameters.from!}"/>
+        <fieldset>
+            <legend>
+                <@ui.errorMessage "form"/>
+            </legend>
+            <div>
+                <label><@s.message "email"/>: </label><@ui.error "email"/>
+            </div>
+            <div>
+                <@s.formInput path="form.email"  attributes="class=\"text_input\""/>
+            </div>
+
+            <div>
+                <label><@s.message "password"/>: </label><@ui.error "password"/>
+            </div>
+            <div>
+                <@s.formPasswordInput path="form.password"  attributes="class=\"text_input\""/>
+            </div>
+            <div>
+                <button type="submit"><@s.message "submit"/></button>
+                <a href="#z" onclick="history.back(); return false;"><@s.message "cancel"/></a>
+            </div>
+        </fieldset>
+    </form>
+</div>
+{{outlet}}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util" default-autowire="byName"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+        >
+    <util:properties id="properties">
+        <prop key="db.hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+        <prop key="db.enable.hibernate.sql.format">false</prop>
+        <prop key="db.enable.hibernate.sql.log">false</prop>
+    </util:properties>
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+          p:maxActive="50"
+          p:testWhileIdle="true"
+          p:driverClassName="org.hsqldb.jdbcDriver" p:url="jdbc:hsqldb:mem:testdb"
+          p:username="sa" p:password=""/>
+</beans>

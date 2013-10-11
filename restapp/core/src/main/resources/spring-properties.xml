@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="byName" default-lazy-init="true" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       xmlns:util="http://www.springframework.org/schema/util">
+    <util:properties id="properties">
+        <prop key="db.hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+        <prop key="db.enable.hibernate.sql.log">false</prop>
+        <prop key="db.enable.hibernate.sql.format">false</prop>
+        <prop key="jndi.name">java:comp/env/jdbc/sample</prop>
+    </util:properties>
+</beans>
