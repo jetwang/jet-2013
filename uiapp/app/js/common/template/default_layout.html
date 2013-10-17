@@ -1,8 +1,9 @@
 <div class="container">
 
-    <div class="row">
-        <div class=".col-lg-6">
-            <a href="${reqContext.buildUrl({" locale":"en_US"})}">English</a>
+    <div class="row text-right">
+        <div class="col-lg-8"></div>
+        <div class="col-lg-4">
+            <a href="#/knight-list">Knight</a>
             <a href="${reqContext.buildUrl({" locale":"zh_CN"})}">简体中文</a>
             <a href="/statics/list-show" target="_blank">SOAP List</a>
             <a href="/rs/application.wadl" target="_blank">REST WADL</a>
@@ -10,7 +11,7 @@
     </div>
 
     <div class="row">
-        <div class=".col-lg-6">
+        <div class="col-lg-12">
             <ng:view/>
         </div>
     </div>

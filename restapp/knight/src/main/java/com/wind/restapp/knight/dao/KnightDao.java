@@ -1,14 +1,14 @@
 package com.wind.restapp.knight.dao;
 
 
-import com.wind.restapp.knight.domain.Knight;
-import com.wind.restapp.knight.form.KnightForm;
 import com.wind.restapp.common.framework.db.Criteria;
 import com.wind.restapp.common.framework.db.DataAccess;
 import com.wind.restapp.common.framework.db.Page;
 import com.wind.restapp.common.framework.util.BeanUtils;
 import com.wind.restapp.common.framework.util.StringUtils;
 import com.wind.restapp.common.framework.util.UUIDUtils;
+import com.wind.restapp.knight.domain.Knight;
+import com.wind.restapp.knight.form.KnightForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,7 +70,7 @@ public class KnightDao {
         return dataAccess.load(Knight.class, number);
     }
 
-    public Knight saveFromForm(KnightForm knightForm) {
-        return null;
+    public void delete(String knightId) {
+        dataAccess.updateByHQL("delete from Knight where knightId= ?", knightId);
     }
 }

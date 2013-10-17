@@ -1,20 +1,19 @@
-define(['angular', 'globalParams'], function (angular, globalParams) {
+define(['angular', 'globalParams','modules'], function (angular, globalParams, modules) {
     'use strict';
-    return angular.module('uiapp.controllers', ['uiapp.services'])
-        // Sample controller where service is being used
+    return modules.controllers
         .controller('user-login-ctrl', ['$http', '$scope', 'currentUser', function ($http, $scope, currentUser) {
             $scope.login = function () {
-                if ($scope.email && $scope.email.lastIndexOf("jetwang") < 0) {
+                if ($scope.email) {
                     $http.post(globalParams.apiHost + "/user/login",
                         {email: $scope.email, password: $scope.password})
-                        .then(function () {
+                        .success(function () {
                             $scope.loginForm.email.$setValidity("existing", true);
                             currentUser.email = $scope.email;
-                            alert("login");
-                        }, function () {
-                            $scope.loginForm.email.$setValidity("existing", false);
-                        })
-                } else {
+                        }).error(function (data, status) {
+                            if (status = 404) {
+                                $scope.loginForm.email.$setValidity("existing", false);
+                            }
+                        });
                 }
             };
         }]);

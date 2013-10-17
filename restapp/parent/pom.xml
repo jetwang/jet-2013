@@ -28,11 +28,19 @@
     </profiles>
 
     <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+            <testResource>
+                <directory>src/test/env.resources/${env}</directory>
+            </testResource>
+        </testResources>
+
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
-
             <resource>
                 <directory>src/main/env.resources/${env}</directory>
             </resource>

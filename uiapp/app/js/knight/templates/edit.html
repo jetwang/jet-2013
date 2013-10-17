@@ -1,0 +1,37 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form role="form" name="knightForm" ng-submit="update(knight)">
+            <div class="modal-header">
+                <h3>Update {{knight.name}}</h3>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label><@s.message "status"/>: </label><@ui.error "status"/>
+                </div>
+                <div>
+                    <@s.formSingleSelect "knightForm.statusId" statusOptions/>
+                </div>
+                <div class="form-group" ng-class="{'has-error': knightForm.name.$dirty&&knightForm.name.$invalid}">
+                    <label class="control-label" for="name">Name</label>
+                    <input type="text" name="name" size="40" ng-model="knight.name" ng-required="true"
+                           class="form-control" id="name" placeholder="Knight name">
+                </div>
+                <div class="form-group"
+                     ng-class="{'has-error': knightForm.description.$dirty&&knightForm.description.$invalid}">
+                    <label class="control-label" for="description">Description</label>
+                    <textarea name="description" size="40" ng-model="knight.description" ng-required="true"
+                              class="form-control" id="description" placeholder="Knight description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    &nbsp;
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" ng-click="cancelEdit(knight)" class="btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

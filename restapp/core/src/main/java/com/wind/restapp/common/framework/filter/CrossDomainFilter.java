@@ -1,27 +1,29 @@
 package com.wind.restapp.common.framework.filter;
 
-import com.sun.jersey.spi.container.ContainerRequest;
-import com.sun.jersey.spi.container.ContainerResponse;
-import com.sun.jersey.spi.container.ContainerResponseFilter;
-import com.sun.jersey.spi.resource.Singleton;
-import org.springframework.stereotype.Component;
+import org.springframework.web.filter.GenericFilterBean;
 
-import javax.ws.rs.ext.Provider;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-@Provider
-@Singleton
-@Component
-public class CrossDomainFilter implements ContainerResponseFilter {
-
+public class CrossDomainFilter extends GenericFilterBean {
     @Override
-    public ContainerResponse filter(ContainerRequest request, ContainerResponse response) {
-        response.getHttpHeaders().add("Access-Control-Allow-Origin", "*");
-        response.getHttpHeaders().add("Access-Control-Allow-Headers",
-                "origin, content-type, accept, authorization");
-        response.getHttpHeaders().add("Access-Control-Allow-Credentials",
-                "true");
-        response.getHttpHeaders().add("Access-Control-Allow-Methods",
-                "GET, POST, PUT, DELETE, OPTIONS, HEAD");
-        return response;
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, origin, content-type, accept, authorization");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            response.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            chain.doFilter(request, servletResponse);
+        }
+        response.flushBuffer();
     }
 }

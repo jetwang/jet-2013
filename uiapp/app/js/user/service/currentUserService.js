@@ -1,6 +1,6 @@
-define(['angular'], function (angular) {
+define(['angular', 'modules'], function (angular, modules) {
     'use strict';
-    return angular.module('uiapp.services', [])
+    return modules.services
         // Sample controller where service is being used
         .value('currentUser', ['$scope', function ($scope) {
             return {};

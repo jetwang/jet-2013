@@ -1,0 +1,40 @@
+<h1>Knights</h1>
+<div class="row">
+    <div class="col-lg-10 text-left">
+        <form class="form-inline" role="form" ng-submit="search(1)">
+            <div class="form-group">
+                <label class="sr-only" for="keyword">Search:</label>
+                <input type="text" class="form-control" width="200" ng-model="keyword"
+                       placeholder="Enter keyword to search knight" id="keyword" name="keyword">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-info">Search</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-2 text-right">
+        <button type="button" ng-click="edit()" class="btn btn-primary">Add Knight</button>
+    </div>
+</div>
+<table width="100%" class="table table-striped table-hover">
+    <thead>
+    <th width="20%">Name</th>
+    <th width="40%">Description</th>
+    <th width="20%">Status</th>
+    <th width="20%">Operation</th>
+    </thead>
+    <tbody ng-repeat="knight in knights">
+    <tr>
+        <td>{{knight.name}}</td>
+        <td>{{knight.description}}</td>
+        <td>{{knight.status}}</td>
+        <td>
+            <a class="" href="" ng-click="edit(knight)">Update</a>
+            <a href="" ng-click="delete(knight)">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div ng-if="hasMoreData">
+    <button type="button" class="btn btn-info btn-lg btn-block">More knights</button>
+</div>

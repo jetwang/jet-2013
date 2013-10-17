@@ -1,4 +1,8 @@
-jet-2012
+jet-2013
 ========
 
-This is my code skeleton for web and web service application development, built base on spring, hibernate, jersey, cxf etc.
+This is my code skeleton for client js + REST applications, built base on angular+bootstrap, spring + jersey + hibernate.
+
+TODO:
+1. Authentication, both server and client check
+2. select for update

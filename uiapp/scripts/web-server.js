@@ -84,6 +84,10 @@ StaticServlet.MimeMap = {
 };
 
 StaticServlet.prototype.handleRequest = function(req, res) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "X-Requested-With, origin, content-type, accept, authorization");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
     var self = this;
     var path = ('../' + req.url.pathname).replace('//','/').replace(/%(..)/g, function(match, hex){
         return String.fromCharCode(parseInt(hex, 16));
@@ -98,7 +102,7 @@ StaticServlet.prototype.handleRequest = function(req, res) {
             return self.sendDirectory_(req, res, path);
         return self.sendFile_(req, res, path);
     });
-}
+};
 
 StaticServlet.prototype.sendError_ = function(req, res, error) {
     res.writeHead(500, {

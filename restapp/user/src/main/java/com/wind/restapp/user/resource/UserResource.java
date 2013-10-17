@@ -2,11 +2,11 @@ package com.wind.restapp.user.resource;
 
 import com.sun.jersey.api.NotFoundException;
 import com.sun.jersey.api.ParamException;
+import com.wind.restapp.common.framework.ServiceException;
 import com.wind.restapp.user.form.LoginForm;
 import com.wind.restapp.user.manager.NotNeedToLogin;
 import com.wind.restapp.user.manager.SessionContext;
 import com.wind.restapp.util.Constants;
-import com.wind.restapp.common.framework.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -35,7 +35,7 @@ public class UserResource {
             sessionContext.setCurrentEmail(email);
             return Response.ok(email).build();
         } else {
-            throw new NotFoundException();
+            throw new NotFoundException("Can find matched email and password");
         }
     }
 
