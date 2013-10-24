@@ -1,22 +1,16 @@
 package com.wind.restapp.knight.form;
 
+import com.wind.restapp.util.Constants;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "knight-status", namespace = Constants.NS + "/knight-status")
 public enum KnightStatus {
-    Dead("-1", "dead"), King("1", "king");
-
+    Dead("-1"), King("1");
     private String id;
-    private String title;
 
-    KnightStatus(String id, String title) {
+    KnightStatus(String id) {
         this.id = id;
-        this.title = title;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public static KnightStatus fromId(String id) {
@@ -25,5 +19,17 @@ public enum KnightStatus {
                 return knightStatus;
         }
         return null;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public static String[] ids() {
+        String[] ids = new String[values().length];
+        for (int i = 0; i < ids.length; i++) {
+            ids[i] = values()[i].id;
+        }
+        return ids;
     }
 }

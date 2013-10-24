@@ -27,7 +27,7 @@
     <tr>
         <td>{{knight.name}}</td>
         <td>{{knight.description}}</td>
-        <td>{{knight.status}}</td>
+        <td>{{knightStatuses[knight.statusId]}}</td>
         <td>
             <a class="" href="" ng-click="edit(knight)">Update</a>
             <a href="" ng-click="delete(knight)">Delete</a>
@@ -36,5 +36,5 @@
     </tbody>
 </table>
 <div ng-if="hasMoreData">
-    <button type="button" class="btn btn-info btn-lg btn-block">More knights</button>
+    <button type="button" ng-click="search(pageNumber+1)" class="btn btn-info btn-lg btn-block">More knights</button>
 </div>

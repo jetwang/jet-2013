@@ -6,7 +6,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
         >
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
-          p:maxActive="50" p:testWhileIdle="true" p:driverClassName="com.mysql.jdbc.Driver"
+          p:maxActive="50" p:testWhileIdle="true" p:driverClassName="com.mysql.jdbc.Driver" p:validationQuery="select 1"
           p:url="jdbc:mysql://localhost:3306/sample?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"
+          p:testOnBorrow="true" p:validationQueryTimeout="30000" p:timeBetweenEvictionRunsMillis="5000"
+          p:removeAbandonedTimeout="60" p:removeAbandoned="true"
           p:username="root" p:password="yintian2010"/>
 </beans>

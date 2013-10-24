@@ -50,11 +50,6 @@ public class Page implements Serializable {
 
     public void setRowCount(int rowCount) {
         this.rowCount = rowCount;
-        if (calculateRowCount && pageNumber > getPageCount()) {
-            pageNumber = getPageCount();
-        } else if (pageNumber <= 0) {
-            pageNumber = DEFAULT_PAGE_NUMBER;
-        }
     }
 
     public int getStartRowNumber() {

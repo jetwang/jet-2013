@@ -35,7 +35,7 @@ public class UserResource {
             sessionContext.setCurrentEmail(email);
             return Response.ok(email).build();
         } else {
-            throw new NotFoundException("Can find matched email and password");
+            throw new NotFoundException("Can not find matched email and password");
         }
     }
 
@@ -43,6 +43,11 @@ public class UserResource {
     @Path("/current")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML + Constants.CHARSET})
     public String current() {
-        return sessionContext.getCurrentEmail();
+        String currentEmail = sessionContext.getCurrentEmail();
+        if (StringUtils.hasText(currentEmail)) {
+            return currentEmail;
+        } else {
+            throw new NotFoundException("Can't find current logged in email");
+        }
     }
 }

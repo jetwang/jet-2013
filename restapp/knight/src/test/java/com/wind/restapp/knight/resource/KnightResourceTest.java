@@ -55,7 +55,7 @@ public class KnightResourceTest extends RestTest {
     public void testUpdateKnight() throws Exception {
         KnightForm form = new KnightForm();
         form.setName("test name");
-        form.setStatus(KnightStatus.King);
+        form.status(KnightStatus.King);
         form.setKnightId("test knight id");
         ClientResponse clientResponse = client().resource("http://localhost:9998/rs/knight").path("update").entity(form, MediaType.APPLICATION_JSON_TYPE).post(ClientResponse.class);
         Assert.assertEquals(Response.Status.CREATED.getStatusCode(), clientResponse.getStatus());

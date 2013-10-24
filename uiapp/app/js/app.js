@@ -5,13 +5,14 @@
         require([
             "angularRoute",
             "angularBootstrap",
-            "./common/modules",
             "angular",
             "globalParams",
             "text!./common/template/default_layout.html",
-            "./user/service/currentUserService",
+            "./common/modules",
+            "./common/interceptors/authenticationInterceptor",
+            "./knight/services/knightService",
             "./knight/knightControllers",
-            "./user/userControllers"], function (angularRoute, angularBootstrap, modules, angular, globalParams, layoutHTML) {
+            "./user/userControllers"], function (angularRoute, angularBootstrap, angular, globalParams, layoutHTML) {
             var $container = angular.element(uiappContainer);
             angular.element().ready(function () {
                 $container.html(layoutHTML);

@@ -11,7 +11,7 @@ import java.text.MessageFormat;
 @javax.persistence.Entity
 @Table(name = "knight", uniqueConstraints = {@UniqueConstraint(columnNames = {"knight_id", "KNIGHT_NUMBER"})})
 @XmlRootElement(name = "knight", namespace = Constants.NS + "/knight")
-public class Knight{
+public class Knight {
     @Column(name = "knight_id")
     private String knightId;
     @Column(length = 20, name = "name")
@@ -57,11 +57,11 @@ public class Knight{
         this.statusId = statusId;
     }
 
-    public KnightStatus getStatus() {
+    public KnightStatus status() {
         return KnightStatus.fromId(statusId);
     }
 
-    public void setStatus(KnightStatus status) {
+    public void status(KnightStatus status) {
         if (status != null)
             this.statusId = status.getId();
     }

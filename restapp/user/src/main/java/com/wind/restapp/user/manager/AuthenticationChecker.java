@@ -16,13 +16,10 @@ public class AuthenticationChecker {
     @Autowired
     private SessionContext sessionContext;
 
-    @Around("@annotation(org.springframework.stereotype.Service)")
+    @Around("@within(org.springframework.stereotype.Service) and !@within (com.wind.restapp.user.manager.NotNeedToLogin)")
     public Object check(ProceedingJoinPoint call) throws Throwable {
-        Class<?> clazz = call.getTarget().getClass();
-        if (clazz.getAnnotation(NotNeedToLogin.class) == null) {
-            if (StringUtils.isEmpty(sessionContext.getCurrentEmail())) {
-                throw new WebApplicationException(Response.Status.UNAUTHORIZED);
-            }
+        if (StringUtils.isEmpty(sessionContext.getCurrentEmail())) {
+            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
         }
         return call.proceed();
     }

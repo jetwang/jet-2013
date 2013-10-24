@@ -1,10 +1,9 @@
 define(['angular', 'globalParams', 'modules'], function (angular, globalParams, modules) {
     'use strict';
     return modules.controllers
-        .controller('knight-list-ctrl', ['$http', '$scope', '$modal', function ($http, $scope, $modal) {
+        .controller('knight-list-ctrl', ['$http', '$scope', '$modal', 'knightStatuses', function ($http, $scope, $modal, knightStatuses) {
             $scope.search = function (pageNumber) {
-                var pageSize = 10;
-                $scope.pageNumber = pageNumber;
+                var pageSize = 3;
                 $http.get(globalParams.apiHost + "/knight/quote",
                     {params: {pageSize: pageSize, pageNumber: pageNumber, keyword: $scope.keyword}})
                     .success(function (data) {
@@ -15,9 +14,8 @@ define(['angular', 'globalParams', 'modules'], function (angular, globalParams, 
                         } else {
                             $scope.knights = data;
                         }
-                        if (data.length < pageSize) {
-                            $scope.hasMoreData = false;
-                        }
+                        $scope.hasMoreData = data.length >= pageSize;
+                        $scope.pageNumber = pageNumber;
                     });
             };
             $scope.edit = function (knight) {
@@ -54,10 +52,12 @@ define(['angular', 'globalParams', 'modules'], function (angular, globalParams, 
             };
 
             $scope.hasMoreData = true;
+            $scope.knightStatuses = knightStatuses;
             $scope.search(1);
         }])
-        .controller('knight-edit-ctrl', ['$http', '$scope', 'knight', '$modalInstance', function ($http, $scope, knight, $modalInstance) {
+        .controller('knight-edit-ctrl', ['$http', '$scope', 'knight', 'knightStatuses', '$modalInstance', function ($http, $scope, knight, knightStatuses, $modalInstance) {
             $scope.knight = knight;
+            $scope.knightStatuses = knightStatuses;
             $scope.cancelEdit = function () {
                 $modalInstance.close();
             };
