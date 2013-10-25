@@ -68,5 +68,13 @@ define(['angular', 'globalParams', 'modules'], function (angular, globalParams, 
                         $modalInstance.close(data);
                     });
             };
+        }])
+        .controller('knight-all-ctrl', ['$http', '$scope', 'knightStatuses', function ($http, $scope, knightStatuses) {
+            $scope.knightStatuses = knightStatuses;
+            $http.get(globalParams.apiHost + "/knight/quote",
+                {params: {pageSize: 999999, pageNumber: 1}})
+                .success(function (data) {
+                    $scope.knights = data;
+                });
         }]);
 });

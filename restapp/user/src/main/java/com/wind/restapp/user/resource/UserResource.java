@@ -50,4 +50,12 @@ public class UserResource {
             throw new NotFoundException("Can't find current logged in email");
         }
     }
+
+    @GET
+    @Path("/logout")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML + Constants.CHARSET})
+    public Response logout() {
+        sessionContext.setCurrentEmail(null);
+        return Response.ok().build();
+    }
 }

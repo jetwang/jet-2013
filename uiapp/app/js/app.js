@@ -8,7 +8,7 @@
             "angular",
             "globalParams",
             "text!./common/template/default_layout.html",
-            "./common/modules",
+            "modules",
             "./common/interceptors/authenticationInterceptor",
             "./knight/services/knightService",
             "./knight/knightControllers",
@@ -18,7 +18,9 @@
                 $container.html(layoutHTML);
                 globalParams.apiHost = $container.attr("api-host");
                 $container.addClass('ng-app');
+                console.log("bootstap uiapp start");
                 angular.bootstrap($container, ["uiapp"]);
+                console.log("bootstap uiapp done");
             });
         });
     });

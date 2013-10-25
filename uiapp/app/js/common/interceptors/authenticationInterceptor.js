@@ -11,4 +11,5 @@ define(['angular', 'modules'], function (angular, modules) {
             }
         }
     }]);
+    console.log("register authentication interceptor");
 });

@@ -1,10 +1,12 @@
 <div class="container">
 
-    <div class="row text-right">
+    <div class="row text-right" ng-controller="user-login-ctrl">
         <div class="col-lg-8"></div>
-        <div class="col-lg-4">
-            <span  ng-if="$rootScope.email">Welcome, {{$rootScope.email}}</span>
+        <div ng-if="currentEmail" class="col-lg-4" >
+            <span>Welcome, {{currentEmail}}</span>
             <a href="#/knight-list">Knight</a>
+            <a href="#/knight-all">All</a>
+            <a href="" ng-click="logout()">Sign out</a>
         </div>
     </div>
 
